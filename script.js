@@ -1,3 +1,4 @@
+
 // MOBILE NAV
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
@@ -14,7 +15,9 @@ const headerLogoWrapper = document.querySelector(".logo");
 const hero = document.getElementById("hero");
 
 let heroHeight = hero.offsetHeight;
-
+window.addEventListener("resize", () => {
+  heroHeight = hero.offsetHeight;
+});
 // On Load → Move to Center
 window.addEventListener("load", () => {
   requestAnimationFrame(() => {
@@ -71,28 +74,32 @@ const reveals = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
+
     if (entry.isIntersecting) {
       entry.target.classList.add("active");
+    } else {
+      entry.target.classList.remove("active"); // reverse on scroll up
     }
+
   });
 }, { threshold: 0.15 });
-
 reveals.forEach(el => revealObserver.observe(el));
+
 // BAR GRAPH ANIMATION
-
 const bars = document.querySelectorAll(".bar");
-
 const barObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
+
+    const bar = entry.target;
+    const value = bar.getAttribute("data-value");
+    const fill = bar.querySelector(".bar-fill");
+
     if (entry.isIntersecting) {
-      const bar = entry.target;
-      const value = bar.getAttribute("data-value");
-      const fill = bar.querySelector(".bar-fill");
-
       fill.style.width = value + "%";
-
-      barObserver.unobserve(bar);
+    } else {
+      fill.style.width = "0%";
     }
+
   });
 }, { threshold: 0.5 });
 
@@ -106,6 +113,9 @@ const contactObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       contactLeft.classList.add("active");
+    }
+    else {
+      contactLeft.classList.remove("active");
     }
   });
 }, { 
@@ -233,3 +243,4 @@ sliderArea.addEventListener("touchend", () => {
     }
   }
 });
+
