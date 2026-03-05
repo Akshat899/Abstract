@@ -141,7 +141,7 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/yourusername/abstract-brand-agency.git
+git clone https://github.com/akshat899/abstract.git
 
 Navigate into the folder:
 
