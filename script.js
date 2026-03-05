@@ -7,7 +7,16 @@ hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open");
   hamburger.classList.toggle("active");
 });
+// CLOSE MOBILE MENU WHEN LINK IS CLICKED
 
+const navItems = document.querySelectorAll(".nav-links a");
+
+navItems.forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    hamburger.classList.remove("active");
+  });
+});
 
 // LOGO MORPH SYSTEM
 const floatingLogo = document.getElementById("floatingLogo");
